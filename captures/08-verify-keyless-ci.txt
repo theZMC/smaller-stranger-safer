@@ -1,0 +1,70 @@
+verify	Resolve digest	﻿2026-08-23T23:49:50.1366079Z ##[group]Run DIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.1" --format '{{json .Manifest}}' | jq -r .digest)
+verify	Resolve digest	2026-08-23T23:49:50.1366855Z ^[[36;1mDIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.1" --format '{{json .Manifest}}' | jq -r .digest)^[[0m
+verify	Resolve digest	2026-08-23T23:49:50.1367411Z ^[[36;1mecho "digest=$DIGEST" >> "$GITHUB_OUTPUT"^[[0m
+verify	Resolve digest	2026-08-23T23:49:50.1367797Z ^[[36;1mecho "resolved $IMAGE:v1.0.1 -> $DIGEST"^[[0m
+verify	Resolve digest	2026-08-23T23:49:50.1390676Z shell: /usr/bin/bash -e {0}
+verify	Resolve digest	2026-08-23T23:49:50.1391007Z env:
+verify	Resolve digest	2026-08-23T23:49:50.1391397Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Resolve digest	2026-08-23T23:49:50.1391697Z ##[endgroup]
+verify	Resolve digest	2026-08-23T23:49:52.3302791Z resolved ghcr.io/thezmc/orders-api:v1.0.1 -> sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273
+verify	WRONG anyone with a valid signature passes	﻿2026-08-23T23:49:52.3355007Z ##[group]Run cosign verify \
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3355645Z ^[[36;1mcosign verify \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3355989Z ^[[36;1m  --certificate-identity-regexp '.*' \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3356390Z ^[[36;1m  --certificate-oidc-issuer-regexp '.*' \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3356911Z ^[[36;1m  "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" | jq '.[0].optional'^[[0m
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3378501Z shell: /usr/bin/bash -e {0}
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3378871Z env:
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3379142Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3379509Z ##[endgroup]
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3076674Z 
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3078082Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3079041Z The following checks were performed on each of these signatures:
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3079773Z   - The cosign claims were validated
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3091258Z   - Existence of the claims in the transparency log was verified offline
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3092168Z {}
+verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3106215Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	RIGHT only the release workflow passes	﻿2026-08-23T23:49:55.3156417Z ##[group]Run cosign verify \
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3156774Z ^[[36;1mcosign verify \^[[0m
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3157208Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3157696Z ^[[36;1m  --certificate-identity-regexp \^[[0m
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3158161Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3158866Z ^[[36;1m  "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" | jq '.[0].optional'^[[0m
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3181889Z shell: /usr/bin/bash -e {0}
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182188Z env:
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182427Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182773Z ##[endgroup]
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1394375Z 
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1396169Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1397553Z The following checks were performed on each of these signatures:
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1398551Z   - The cosign claims were validated
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1399322Z   - Existence of the claims in the transparency log was verified offline
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1400416Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1409392Z {}
+verify	Verify attestation and scan its SBOM	﻿2026-08-23T23:49:58.1443840Z ##[group]Run cosign verify-attestation \
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1444376Z ^[[36;1mcosign verify-attestation \^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1444926Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1446534Z ^[[36;1m  --certificate-identity-regexp \^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1447133Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1447930Z ^[[36;1m  --type cyclonedx "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" \^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1448785Z ^[[36;1m  | jq -r '.payload' | base64 -d | jq '.predicate' > attested-sbom.json^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1449491Z ^[[36;1mjq -r '.bomFormat + " with " + (.components | length | tostring) + " components"' attested-sbom.json^[[0m
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474028Z shell: /usr/bin/bash -e {0}
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474460Z env:
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474781Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1475156Z ##[endgroup]
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9746247Z 
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9757018Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9758407Z The following checks were performed on each of these signatures:
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9759314Z   - The cosign claims were validated
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9760156Z   - Existence of the claims in the transparency log was verified offline
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9761224Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	Verify attestation and scan its SBOM	2026-08-23T23:50:01.0118508Z CycloneDX with 1463 components
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	﻿2026-08-23T23:50:01.0193545Z Post job cleanup.
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.1961112Z ##[group]Logout from ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2022677Z [command]/usr/bin/docker logout ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2194590Z Removing login credentials for ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2232897Z ##[endgroup]
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2233849Z ##[group]Post cache
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2234251Z State not set
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2234839Z ##[endgroup]
+verify	Complete job	﻿2026-08-23T23:50:01.2448575Z Cleaning up orphan processes
