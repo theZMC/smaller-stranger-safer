@@ -1,0 +1,1 @@
+Error from server: admission webhook "ivpol.mutate.kyverno.svc-fail" denied the request: Policy require-signed-images error: failed to update digest: failed to resolve digest for image ghcr.io/evil/cryptominer:latest: GET https://ghcr.io/token?scope=repository%3Aevil%2Fcryptominer%3Apull&service=ghcr.io: DENIED: requested access to the resource is denied

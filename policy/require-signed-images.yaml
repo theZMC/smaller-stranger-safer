@@ -11,8 +11,7 @@ kind: ImageValidatingPolicy
 metadata:
   name: require-signed-images
 spec:
-  webhookConfiguration:
-    failurePolicy: Fail
+  failurePolicy: Fail
   validationActions: [Deny]
   matchConstraints:
     resourceRules:
