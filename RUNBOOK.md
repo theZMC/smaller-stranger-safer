@@ -8,7 +8,7 @@ internet). Everything below works offline.
 - [ ] `./scripts/prebake.sh` ran clean
 - [ ] `docker images` shows `orders-api:naive`, `orders-api:hardened`, and all bases
 - [ ] `grype db status` shows a recent db
-- [ ] local registry up: `curl -s localhost:5000/v2/_catalog` lists `orders-api`
+- [ ] local registry up: `curl -s localhost:5001/v2/_catalog` lists `orders-api`
 - [ ] `cosign.key` / `cosign.pub` exist in the repo root
 - [ ] terminal font size cranked, shell prompt minimal
 
@@ -58,12 +58,15 @@ grype sbom:./sbom-naive.json
 grype sbom:./sbom-hardened.json
 ```
 
-grype reads the SBOM files from demo 4, not the images.
+grype reads the SBOM files from demo 4, not the images. The hardened image's
+remaining matches are all Debian "won't fix" / no-fix entries; add
+`--only-fixed` to show only what has a patch available (the CI gate runs with
+it), which takes the hardened image to zero.
 
 ## Demo 6: cosign (keyed)
 
 ```console
-DIGEST=$(docker inspect localhost:5000/orders-api:latest --format '{{index .RepoDigests 0}}')
+DIGEST=$(docker inspect localhost:5001/orders-api:latest --format '{{index .RepoDigests 0}}')
 cosign sign --key cosign.key "$DIGEST"
 cosign attest --key cosign.key --type cyclonedx --predicate sbom-hardened.json "$DIGEST"
 cosign verify --key cosign.pub "$DIGEST"

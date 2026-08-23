@@ -1,0 +1,7 @@
+debian:12-slim	138MB
+gcr.io/distroless/nodejs22-debian12:latest	212MB
+golang:1.26	1.29GB
+node:22	1.62GB
+node:22-alpine	227MB
+node:22-slim	347MB
+node:latest	1.79GB

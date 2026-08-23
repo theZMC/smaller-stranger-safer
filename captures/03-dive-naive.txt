@@ -1,0 +1,3 @@
+  efficiency: 99.4123 %
+  wastedBytes: 9803712 bytes (9.8 MB)
+  userWastedPercent: 0.8497 %

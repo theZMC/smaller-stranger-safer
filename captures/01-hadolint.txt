@@ -1,0 +1,2 @@
+Dockerfile:1 DL3007 warning: Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag
+Dockerfile:6 DL3025 warning: Use arguments JSON notation for CMD and ENTRYPOINT arguments

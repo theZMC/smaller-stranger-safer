@@ -13,7 +13,7 @@ done
 
 echo "==> pulling base images"
 for img in node:latest node:22 node:22-slim node:22-alpine \
-  gcr.io/distroless/nodejs22-debian12 golang:1.26 debian:12-slim registry:2; do
+  gcr.io/distroless/nodejs22-debian13 golang:1.26 debian:12-slim registry:2; do
   docker pull "$img"
 done
 
@@ -25,14 +25,14 @@ docker build -t go-svc:latest go-svc/
 echo "==> updating grype vulnerability db"
 grype db update
 
-echo "==> starting local registry on :5000"
+echo "==> starting local registry on :5001 (macOS AirPlay squats on 5000)"
 if ! docker ps --format '{{.Names}}' | grep -q '^sss-registry$'; then
-  docker run -d --restart=always -p 5000:5000 --name sss-registry registry:2
+  docker run -d --restart=always -p 5001:5000 --name sss-registry registry:2
 fi
 
 echo "==> pushing hardened image to the local registry"
-docker tag orders-api:hardened localhost:5000/orders-api:latest
-docker push localhost:5000/orders-api:latest
+docker tag orders-api:hardened localhost:5001/orders-api:latest
+docker push localhost:5001/orders-api:latest
 
 if [ ! -f cosign.key ]; then
   echo "==> generating cosign keypair (empty password; demo only)"
@@ -40,4 +40,4 @@ if [ ! -f cosign.key ]; then
 fi
 
 echo "==> done. Digest for the cosign demo:"
-docker inspect localhost:5000/orders-api:latest --format '{{index .RepoDigests 0}}'
+docker inspect localhost:5001/orders-api:latest --format '{{index .RepoDigests 0}}'

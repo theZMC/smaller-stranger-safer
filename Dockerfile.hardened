@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev
 
-FROM gcr.io/distroless/nodejs22-debian12@sha256:8a3e96fe3345b5d83ecec2066e7c498139a02a6d1214e4f6c39f9ce359f3f5bc
+FROM gcr.io/distroless/nodejs22-debian13@sha256:c2753c8b3754b5bde34c1bbbaaa81b2e3ddd67604a867c3521257241f281ce0f
 WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY src/ ./src/

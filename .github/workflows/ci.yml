@@ -40,4 +40,5 @@ jobs:
           image: orders-api:ci
           fail-build: true
           severity-cutoff: high
+          only-fixed: true # gate on what can be acted on; Debian "won't fix" entries stay visible in the report
           output-format: table

@@ -1,0 +1,3 @@
+REPOSITORY   TAG        SIZE
+orders-api   naive      1.84GB
+orders-api   hardened   220MB

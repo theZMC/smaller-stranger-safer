@@ -1,0 +1,6 @@
+
+Verification for localhost:5001/orders-api@sha256:c830a46b4af6f687cf2f4c929d49edd4b0f19163a8f66b3f8717a5286a642656 --
+The following checks were performed on each of these signatures:
+  - The cosign claims were validated
+  - Existence of the claims in the transparency log was verified offline
+  - The signatures were verified against the specified public key
