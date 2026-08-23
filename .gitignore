@@ -1,0 +1,6 @@
+# .env is NOT ignored: it is committed on purpose so the naive image build
+# can demonstrate secrets landing in a layer. Everything in it is fake.
+node_modules/
+cosign.key
+sbom-*.json
+attested-sbom.json

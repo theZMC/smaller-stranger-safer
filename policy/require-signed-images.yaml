@@ -1,0 +1,36 @@
+# The full working version of the policy shown (trimmed) in the talk.
+# Requires Kyverno 1.19+ (ImageValidatingPolicy, the CEL-based successor to
+# ClusterPolicy verifyImages, is stable at policies.kyverno.io/v1 since 1.19).
+#
+# Scope note: the glob covers ghcr.io/* only. kube-system pulls from
+# registry.k8s.io, which stays out of scope, so this policy can't brick the
+# control plane. An image from a registry outside the glob skips the check
+# entirely; production pairs this with a registry allowlist policy.
+apiVersion: policies.kyverno.io/v1
+kind: ImageValidatingPolicy
+metadata:
+  name: require-signed-images
+spec:
+  webhookConfiguration:
+    failurePolicy: Fail
+  validationActions: [Deny]
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        operations: [CREATE, UPDATE]
+        resources: [pods]
+  matchImageReferences:
+    - glob: ghcr.io/*
+  attestors:
+    - name: release
+      cosign:
+        keyless:
+          identities:
+            - issuer: https://token.actions.githubusercontent.com
+              subjectRegExp: ^https://github\.com/theZMC/smaller-stranger-safer/
+  validations:
+    - expression: >-
+        images.containers.map(image,
+          verifyImageSignatures(image, [attestors.release])).all(e, e > 0)
+      message: image is not signed by the release workflow

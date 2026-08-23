@@ -1,0 +1,4 @@
+2026-08-01T14:02:11Z INFO orders-api listening on 3000
+2026-08-01T14:02:38Z INFO listing orders
+2026-08-01T14:05:19Z WARN order 2 pending for 3 days
+2026-08-01T14:07:44Z INFO listing orders

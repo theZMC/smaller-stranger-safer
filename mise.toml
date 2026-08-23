@@ -1,0 +1,7 @@
+[tools]
+hadolint = "latest"
+dive = "latest"
+syft = "latest"
+grype = "latest"
+cosign = "latest"
+kind = "latest"

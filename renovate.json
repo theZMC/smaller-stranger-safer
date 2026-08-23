@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":pinDigests"],
+  "packageRules": [
+    {
+      "matchFileNames": ["Dockerfile"],
+      "enabled": false,
+      "description": "The naive Dockerfile stays naive on purpose; it is the talk's bad example"
+    }
+  ]
+}

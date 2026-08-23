@@ -1,0 +1,3 @@
+# Fail on warnings and errors; allow info-level findings (DL3066 fires on
+# USER nonroot, which is exactly what distroless recommends).
+failure-threshold: warning
