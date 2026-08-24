@@ -1,4 +1,16 @@
-NAME        INSTALLED                    FIXED IN     TYPE  VULNERABILITY     SEVERITY    EPSS         RISK   
+^D[?25l[?2004h
+
+   ├── by severity: 0 critical, 0 high, 0 medium, 0 low, 0 negligible
+   └── by status:   0 fixed, 0 not-fixed, 0 ignored 
+   ├── by severity: 0 critical, 0 high, 0 medium, 0 low, 2 negligible
+   └── by status:   0 fixed, 13 not-fixed, 0 ignored 
+   ├── by severity: 1 critical, 2 high, 2 medium, 1 low, 7 negligible
+   ├── by severity: 1 critical, 3 high, 2 medium, 1 low, 7 negligible (1 unknown)
+   └── by status:   0 fixed, 15 not-fixed, 0 ignored 
+ ✔ Scanned for vulnerabilities     [15 vulnerability matches]  
+   ├── by severity: 1 critical, 3 high, 3 medium, 1 low, 7 negligible (1 unknown)
+   └── by status:   0 fixed, 16 not-fixed, 0 ignored 
+[?2004l[?25h[?1002l[?1003l[?1006lNAME        INSTALLED                    FIXED IN     TYPE  VULNERABILITY     SEVERITY    EPSS         RISK   
 libc6       2.41-12+deb13u3              (won't fix)  deb   CVE-2026-5450     Critical    0.5% (41st)  0.5    
 libssl3t64  3.5.6-1~deb13u2              (won't fix)  deb   CVE-2026-14456    High        0.5% (38th)  0.3    
 libc6       2.41-12+deb13u3                           deb   CVE-2018-20796    Negligible  5.8% (92nd)  0.3    
