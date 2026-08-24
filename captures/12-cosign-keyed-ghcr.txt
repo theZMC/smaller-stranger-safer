@@ -1,0 +1,2 @@
+Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
+  - Existence of the claims in the transparency log was verified offline
