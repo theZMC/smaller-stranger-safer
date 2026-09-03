@@ -6,4 +6,4 @@ metadata:
 spec:
   containers:
     - name: ok
-      image: ghcr.io/thezmc/orders-api:v1.0.1
+      image: ghcr.io/thezmc/orders-api:v1.0.2
