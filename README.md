@@ -29,8 +29,8 @@ packaging, not from your code.
 ## Replaying the demos
 
 Tools: `docker`, plus `hadolint`, `dive`, `syft`, `grype`, `cosign`, `kind`.
-With [mise](https://mise.jdx.dev): `mise install`. Without it:
-`brew install hadolint dive syft grype cosign kind`.
+With [mise](https://mise.jdx.dev): `mise install`. With `brew`:
+`brew install hadolint dive syft grype cosign kind`
 
 ```console
 $ ./scripts/prebake.sh   # with internet: pulls bases, warms caches, starts a local registry
