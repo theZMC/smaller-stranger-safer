@@ -1,0 +1,12 @@
+# An unsigned image from a registry the policy watches.
+# ghcr.io/thezmc/cryptominer is busybox, retagged and pushed unsigned, so the
+# denial in the talk is a real one you can replay.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: oops
+spec:
+  containers:
+    - name: oops
+      image: ghcr.io/thezmc/cryptominer:latest
+      command: ["sleep", "3600"]

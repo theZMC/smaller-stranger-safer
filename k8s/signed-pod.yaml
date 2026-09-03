@@ -1,0 +1,9 @@
+# The released image, signed by the release workflow. The same policy admits it.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ok
+spec:
+  containers:
+    - name: ok
+      image: ghcr.io/thezmc/orders-api:v1.0.1
