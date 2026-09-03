@@ -10,6 +10,9 @@ pod/oops created
 $ kubectl apply -f policy/require-signed-images.yaml
 imagevalidatingpolicy.policies.kyverno.io/require-signed-images created
 
+$ kubectl delete pod oops
+pod "oops" deleted from default namespace
+
 $ kubectl apply -f k8s/unsigned-pod.yaml
 Error from server: error when creating "k8s/unsigned-pod.yaml": admission webhook
   "ivpol.validate.kyverno.svc-fail" denied the request: Policy

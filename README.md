@@ -23,14 +23,15 @@ packaging, not from your code.
 | `policy/require-signed-images.yaml` | Full Kyverno ImageValidatingPolicy the talk shows trimmed.      |
 | `.github/workflows/release.yml`     | Keyless cosign sign + attest on every tag.                      |
 | `.github/workflows/ci.yml`          | hadolint gate + grype gate.                                     |
-| `RUNBOOK.md`                        | The six live demos, in order, with the pre-bake checklist.      |
+| `RUNBOOK.md`                        | The ten live demos, in order, with the pre-bake checklist.      |
 | `captures/`                         | Real outputs captured for the slides.                           |
 
 ## Replaying the demos
 
-Tools: `docker`, plus `hadolint`, `dive`, `syft`, `grype`, `cosign`, `kind`.
+Tools: `docker`, plus `hadolint`, `dive`, `syft`, `grype`, `cosign`, `kind`,
+`kubectl`, `helm`.
 With [mise](https://mise.jdx.dev): `mise install`. With `brew`:
-`brew install hadolint dive syft grype cosign kind`
+`brew install hadolint dive syft grype cosign kind kubernetes-cli helm`
 
 ```console
 $ ./scripts/prebake.sh   # with internet: pulls bases, warms caches, starts a local registry, signs

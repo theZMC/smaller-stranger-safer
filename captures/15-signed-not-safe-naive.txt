@@ -11,5 +11,6 @@ $ cosign verify-attestation --key cosign.pub --type cyclonedx \
 
 $ grype sbom:./attested-naive.json
  ✔ Scanned for vulnerabilities     [2,011 vulnerability matches]
-   ├── by severity: 209 critical, 750 high, 605 medium, 151 low
-   └── by status:   385 fixed, 2,510 not-fixed
+   └── by status:   385 fixed, 2,510 not-fixed, 884 ignored
+
+# 385 + 2,510 = 2,895 found; 884 are ignored by rule, leaving the 2,011 shown.

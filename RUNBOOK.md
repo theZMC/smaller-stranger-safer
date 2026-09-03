@@ -69,6 +69,7 @@ it), which takes the hardened image to zero.
 
 ```console
 DIGEST=localhost:5001/orders-api@$(docker inspect localhost:5001/orders-api:latest --format '{{index .RepoDigests 0}}' | cut -d@ -f2)
+export COSIGN_PASSWORD=""    # prebake generated the key with an empty password
 cosign sign --key cosign.key "$DIGEST"
 cosign attest --key cosign.key --type cyclonedx --predicate sbom-hardened.json "$DIGEST"
 cosign verify --key cosign.pub "$DIGEST"
@@ -121,7 +122,7 @@ grype sbom:./attested-naive.json
 ```
 
 The naive image is signed and attested by the same key as the good one, and it
-verifies cleanly. Then read what the attestation actually says: 2,013 matches,
+verifies cleanly. Then read what the attestation actually says: 2,011 matches,
 209 of them critical. The `jq '.predicate'` step matters because the decoded
 payload is an in-toto statement wrapping the SBOM, and grype wants the SBOM.
 
@@ -131,19 +132,23 @@ payload is an in-toto statement wrapping the SBOM, and grype wants the SBOM.
 kubectl delete ivpol require-signed-images
 kubectl apply -f k8s/unsigned-pod.yaml
 kubectl apply -f policy/require-signed-images.yaml
+kubectl delete pod oops
 kubectl apply -f k8s/unsigned-pod.yaml
 kubectl apply -f k8s/signed-pod.yaml
 ```
 
-Needs `./scripts/cluster.sh` (internet, once). Without the policy the cluster
-runs an unsigned image without comment. With it, the same pod is refused at
-admission and the denial text is the policy's own CEL message. The signed
-release image still gets in. Leave the policy applied when you're done.
+Needs `./scripts/cluster.sh` (internet, once). Delete the pod before the second
+apply: re-applying an unchanged manifest is an UPDATE that never reaches the
+admission webhook, so it returns `pod/oops unchanged` and the denial never
+fires. Without the policy the cluster runs an unsigned image without comment.
+With it, the same pod is refused at admission and the denial text is the
+policy's own CEL message. The signed release image still gets in. Leave the
+policy applied when you're done.
 
 ## Reset between rehearsals
 
 ```console
-docker tag orders-api:hardened localhost:5001/orders-api:v1.0.1   # undo demo 7
+docker tag localhost:5001/orders-api:latest localhost:5001/orders-api:v1.0.1  # undo demo 7
 docker push localhost:5001/orders-api:v1.0.1
 kubectl delete pod oops ok --ignore-not-found                     # undo demo 10
 kubectl apply -f policy/require-signed-images.yaml
@@ -153,7 +158,11 @@ rm -f sbom-*.json attested-naive.json
 ```
 
 Demo 7 leaves `:v1.0.1` pointing at the cryptominer image, so restore it before
-the next rehearsal or demo 7 opens on a failure instead of a pass.
+the next rehearsal or demo 7 opens on a failure instead of a pass. Retag from
+`localhost:5001/orders-api:latest`, not from the local `orders-api:hardened`:
+rebuilding produces a new digest even from identical source, so a retag after
+`docker rmi` and a rebuild would restore an unsigned image and demo 7 would open
+on `no signatures found`.
 
 The registry keeps its signatures; `docker rm -f sss-registry` and re-run
 prebake for a truly clean slate.
