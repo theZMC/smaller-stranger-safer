@@ -33,7 +33,8 @@ With [mise](https://mise.jdx.dev): `mise install`. With `brew`:
 `brew install hadolint dive syft grype cosign kind`
 
 ```console
-$ ./scripts/prebake.sh   # with internet: pulls bases, warms caches, starts a local registry
+$ ./scripts/prebake.sh   # with internet: pulls bases, warms caches, starts a local registry, signs
+$ ./scripts/cluster.sh   # with internet: kind cluster + Kyverno + the policy (demo 10 only)
 ```
 
 Then follow [RUNBOOK.md](RUNBOOK.md). Everything after prebake runs offline.
