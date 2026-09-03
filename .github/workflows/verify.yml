@@ -1,6 +1,6 @@
 # Runs the talk's keyless verification commands against a released image and
-# prints their real output. Exists because the repo (and its GHCR package) is
-# private until the talk; in CI, GITHUB_TOKEN grants packages:read.
+# prints their real output, so the WRONG/RIGHT identity slide is a captured log
+# rather than a hand-written one.
 name: verify
 
 on:
