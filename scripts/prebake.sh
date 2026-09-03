@@ -30,14 +30,56 @@ if ! docker ps --format '{{.Names}}' | grep -q '^sss-registry$'; then
   docker run -d --restart=always -p 5001:5000 --name sss-registry registry:2
 fi
 
-echo "==> pushing hardened image to the local registry"
+echo "==> pushing images to the local registry"
 docker tag orders-api:hardened localhost:5001/orders-api:latest
 docker push localhost:5001/orders-api:latest
+
+# demo 7 re-points this tag on stage; reset restores it
+docker tag orders-api:hardened localhost:5001/orders-api:v1.0.1
+docker push localhost:5001/orders-api:v1.0.1
+
+# demo 9 signs this one: a real pile of CVEs, signed and verifiable
+docker tag orders-api:naive localhost:5001/orders-api-naive:latest
+docker push localhost:5001/orders-api-naive:latest
 
 if [ ! -f cosign.key ]; then
   echo "==> generating cosign keypair (empty password; demo only)"
   COSIGN_PASSWORD="" cosign generate-key-pair
 fi
 
-echo "==> done. Digest for the cosign demo:"
-docker inspect localhost:5001/orders-api:latest --format '{{index .RepoDigests 0}}'
+if [ ! -f attacker.key ]; then
+  echo "==> generating the attacker keypair (demo 8; empty password)"
+  COSIGN_PASSWORD="" cosign generate-key-pair --output-key-prefix attacker
+fi
+
+# RepoDigests order is not stable and one entry has no registry, so take the
+# digest and rebuild the reference by hand.
+digest_of() {
+  local ref="$1"
+  echo "${ref%:*}@$(docker inspect "$ref" --format '{{index .RepoDigests 0}}' | cut -d@ -f2)"
+}
+
+HARDENED=$(digest_of localhost:5001/orders-api:latest)
+NAIVE=$(digest_of localhost:5001/orders-api-naive:latest)
+
+echo "==> writing SBOMs if demo 4 hasn't run yet"
+[ -f sbom-hardened.json ] || syft orders-api:hardened -o cyclonedx-json > sbom-hardened.json
+[ -f sbom-naive.json ] || syft orders-api:naive -o cyclonedx-json > sbom-naive.json
+
+echo "==> signing (needs network for the transparency log; verification is offline)"
+COSIGN_PASSWORD="" cosign sign --key cosign.key --yes "$HARDENED"
+COSIGN_PASSWORD="" cosign attest --key cosign.key --yes --type cyclonedx \
+  --predicate sbom-hardened.json "$HARDENED"
+
+# demo 8: the same image, signed by someone who is not you
+COSIGN_PASSWORD="" cosign sign --key attacker.key --yes "$HARDENED"
+
+# demo 9: sign and attest the naive image
+COSIGN_PASSWORD="" cosign sign --key cosign.key --yes "$NAIVE"
+COSIGN_PASSWORD="" cosign attest --key cosign.key --yes --type cyclonedx \
+  --predicate sbom-naive.json "$NAIVE"
+
+echo "==> done."
+echo "    hardened: $HARDENED"
+echo "    naive:    $NAIVE"
+echo "    cluster demo (demo 10): ./scripts/cluster.sh"

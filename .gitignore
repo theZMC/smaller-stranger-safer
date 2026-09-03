@@ -2,5 +2,6 @@
 # can demonstrate secrets landing in a layer. Everything in it is fake.
 node_modules/
 cosign.key
+attacker.key
 sbom-*.json
-attested-sbom.json
+attested-*.json
