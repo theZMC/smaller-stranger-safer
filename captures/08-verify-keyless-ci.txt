@@ -1,70 +1,384 @@
-verify	Resolve digest	﻿2026-08-23T23:49:50.1366079Z ##[group]Run DIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.1" --format '{{json .Manifest}}' | jq -r .digest)
-verify	Resolve digest	2026-08-23T23:49:50.1366855Z ^[[36;1mDIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.1" --format '{{json .Manifest}}' | jq -r .digest)^[[0m
-verify	Resolve digest	2026-08-23T23:49:50.1367411Z ^[[36;1mecho "digest=$DIGEST" >> "$GITHUB_OUTPUT"^[[0m
-verify	Resolve digest	2026-08-23T23:49:50.1367797Z ^[[36;1mecho "resolved $IMAGE:v1.0.1 -> $DIGEST"^[[0m
-verify	Resolve digest	2026-08-23T23:49:50.1390676Z shell: /usr/bin/bash -e {0}
-verify	Resolve digest	2026-08-23T23:49:50.1391007Z env:
-verify	Resolve digest	2026-08-23T23:49:50.1391397Z   IMAGE: ghcr.io/thezmc/orders-api
-verify	Resolve digest	2026-08-23T23:49:50.1391697Z ##[endgroup]
-verify	Resolve digest	2026-08-23T23:49:52.3302791Z resolved ghcr.io/thezmc/orders-api:v1.0.1 -> sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273
-verify	WRONG anyone with a valid signature passes	﻿2026-08-23T23:49:52.3355007Z ##[group]Run cosign verify \
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3355645Z ^[[36;1mcosign verify \^[[0m
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3355989Z ^[[36;1m  --certificate-identity-regexp '.*' \^[[0m
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3356390Z ^[[36;1m  --certificate-oidc-issuer-regexp '.*' \^[[0m
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3356911Z ^[[36;1m  "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" | jq '.[0].optional'^[[0m
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3378501Z shell: /usr/bin/bash -e {0}
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3378871Z env:
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3379142Z   IMAGE: ghcr.io/thezmc/orders-api
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:52.3379509Z ##[endgroup]
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3076674Z 
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3078082Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3079041Z The following checks were performed on each of these signatures:
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3079773Z   - The cosign claims were validated
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3091258Z   - Existence of the claims in the transparency log was verified offline
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3092168Z {}
-verify	WRONG anyone with a valid signature passes	2026-08-23T23:49:55.3106215Z   - The code-signing certificate was verified using trusted certificate authority certificates
-verify	RIGHT only the release workflow passes	﻿2026-08-23T23:49:55.3156417Z ##[group]Run cosign verify \
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3156774Z ^[[36;1mcosign verify \^[[0m
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3157208Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3157696Z ^[[36;1m  --certificate-identity-regexp \^[[0m
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3158161Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3158866Z ^[[36;1m  "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" | jq '.[0].optional'^[[0m
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3181889Z shell: /usr/bin/bash -e {0}
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182188Z env:
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182427Z   IMAGE: ghcr.io/thezmc/orders-api
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:55.3182773Z ##[endgroup]
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1394375Z 
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1396169Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1397553Z The following checks were performed on each of these signatures:
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1398551Z   - The cosign claims were validated
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1399322Z   - Existence of the claims in the transparency log was verified offline
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1400416Z   - The code-signing certificate was verified using trusted certificate authority certificates
-verify	RIGHT only the release workflow passes	2026-08-23T23:49:58.1409392Z {}
-verify	Verify attestation and scan its SBOM	﻿2026-08-23T23:49:58.1443840Z ##[group]Run cosign verify-attestation \
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1444376Z ^[[36;1mcosign verify-attestation \^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1444926Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1446534Z ^[[36;1m  --certificate-identity-regexp \^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1447133Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1447930Z ^[[36;1m  --type cyclonedx "$IMAGE@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273" \^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1448785Z ^[[36;1m  | jq -r '.payload' | base64 -d | jq '.predicate' > attested-sbom.json^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1449491Z ^[[36;1mjq -r '.bomFormat + " with " + (.components | length | tostring) + " components"' attested-sbom.json^[[0m
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474028Z shell: /usr/bin/bash -e {0}
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474460Z env:
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1474781Z   IMAGE: ghcr.io/thezmc/orders-api
-verify	Verify attestation and scan its SBOM	2026-08-23T23:49:58.1475156Z ##[endgroup]
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9746247Z 
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9757018Z Verification for ghcr.io/thezmc/orders-api@sha256:a9ee7e200b834b046f93a11494aaf8a593b19f4a7563e28549bbd0e7f38ff273 --
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9758407Z The following checks were performed on each of these signatures:
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9759314Z   - The cosign claims were validated
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9760156Z   - Existence of the claims in the transparency log was verified offline
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:00.9761224Z   - The code-signing certificate was verified using trusted certificate authority certificates
-verify	Verify attestation and scan its SBOM	2026-08-23T23:50:01.0118508Z CycloneDX with 1463 components
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	﻿2026-08-23T23:50:01.0193545Z Post job cleanup.
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.1961112Z ##[group]Logout from ghcr.io
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2022677Z [command]/usr/bin/docker logout ghcr.io
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2194590Z Removing login credentials for ghcr.io
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2232897Z ##[endgroup]
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2233849Z ##[group]Post cache
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2234251Z State not set
-verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-08-23T23:50:01.2234839Z ##[endgroup]
-verify	Complete job	﻿2026-08-23T23:50:01.2448575Z Cleaning up orphan processes
+verify	Set up job	﻿2026-09-03T20:35:42.6597148Z Current runner version: '2.337.0'
+verify	Set up job	2026-09-03T20:35:42.6626246Z ##[group]Runner Image Provisioner
+verify	Set up job	2026-09-03T20:35:42.6627272Z Hosted Compute Agent
+verify	Set up job	2026-09-03T20:35:42.6627892Z Version: 20260819.586
+verify	Set up job	2026-09-03T20:35:42.6628538Z Commit: 3cc4a88dfa507ef76119ad1bb3eccc6378bb2b76
+verify	Set up job	2026-09-03T20:35:42.6629608Z Build Date: 2026-08-18T23:20:18Z
+verify	Set up job	2026-09-03T20:35:42.6630348Z Worker ID: {459e3517-ae82-445c-8b9e-ecb45d47c1ce}
+verify	Set up job	2026-09-03T20:35:42.6631095Z Azure Region: eastus
+verify	Set up job	2026-09-03T20:35:42.6631678Z ##[endgroup]
+verify	Set up job	2026-09-03T20:35:42.6633206Z ##[group]Operating System
+verify	Set up job	2026-09-03T20:35:42.6634015Z Ubuntu
+verify	Set up job	2026-09-03T20:35:42.6634628Z 24.04.4
+verify	Set up job	2026-09-03T20:35:42.6635178Z LTS
+verify	Set up job	2026-09-03T20:35:42.6635718Z ##[endgroup]
+verify	Set up job	2026-09-03T20:35:42.6636270Z ##[group]Runner Image
+verify	Set up job	2026-09-03T20:35:42.6636930Z Image: ubuntu-24.04
+verify	Set up job	2026-09-03T20:35:42.6637531Z Version: 20260823.283.1
+verify	Set up job	2026-09-03T20:35:42.6638585Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260823.283/images/ubuntu/Ubuntu2404-Readme.md
+verify	Set up job	2026-09-03T20:35:42.6640636Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260823.283
+verify	Set up job	2026-09-03T20:35:42.6642390Z ##[endgroup]
+verify	Set up job	2026-09-03T20:35:42.6643710Z ##[group]GITHUB_TOKEN Permissions
+verify	Set up job	2026-09-03T20:35:42.6646039Z Contents: read
+verify	Set up job	2026-09-03T20:35:42.6646673Z Metadata: read
+verify	Set up job	2026-09-03T20:35:42.6647297Z Packages: read
+verify	Set up job	2026-09-03T20:35:42.6647892Z ##[endgroup]
+verify	Set up job	2026-09-03T20:35:42.6650854Z Secret source: Actions
+verify	Set up job	2026-09-03T20:35:42.6652702Z Prepare workflow directory
+verify	Set up job	2026-09-03T20:35:42.7052042Z Prepare all required actions
+verify	Set up job	2026-09-03T20:35:42.7101336Z Getting action download info
+verify	Set up job	2026-09-03T20:35:42.9326311Z Download action repository 'docker/login-action@dbcb813823bdd20940b903addbd779551569679f' (SHA:dbcb813823bdd20940b903addbd779551569679f)
+verify	Set up job	2026-09-03T20:35:43.2065709Z Download action repository 'sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6' (SHA:6f9f17788090df1f26f669e9d70d6ae9567deba6)
+verify	Set up job	2026-09-03T20:35:43.4189542Z Complete job name: verify
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	﻿2026-09-03T20:35:43.4911563Z ##[group]Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4912677Z with:
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4913115Z   registry: ghcr.io
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4913622Z   username: theZMC
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4917247Z   password: ***
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4917699Z   logout: true
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4918322Z env:
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4918760Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.4919602Z ##[endgroup]
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:43.7133112Z Logging into ghcr.io...
+verify	Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:44.0201799Z Login Succeeded!
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	﻿2026-09-03T20:35:44.0662366Z ##[group]Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0663348Z with:
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0663795Z   cosign-release: v3.0.6
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0664317Z   install-dir: $HOME/.cosign
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0664847Z   use-sudo: false
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0665295Z env:
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0665735Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0666291Z ##[endgroup]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0731719Z ##[start-action display=Run #!/bin/bash;id=__sigstore_cosign-installer.__run]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0775698Z ##[group]Run #!/bin/bash
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0777114Z ^[[36;1m#!/bin/bash^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0777798Z ^[[36;1m# Substitute environment variables in install-dir input^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0778644Z ^[[36;1minstall_dir=$(envsubst <<<"${input_install_dir}")^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0779535Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0779989Z ^[[36;1m# cosign install script^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0780598Z ^[[36;1mshopt -s expand_aliases^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0781179Z ^[[36;1mif [ -z "$NO_COLOR" ]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0781917Z ^[[36;1m  alias log_info="echo -e \"\033[1;32mINFO\033[0m:\""^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0782734Z ^[[36;1m  alias log_error="echo -e \"\033[1;31mERROR\033[0m:\""^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0783415Z ^[[36;1melse^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0783905Z ^[[36;1m  alias log_info="echo \"INFO:\""^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0784548Z ^[[36;1m  alias log_error="echo \"ERROR:\""^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0785143Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0785840Z ^[[36;1mset -e^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0786294Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0786725Z ^[[36;1mCURL_RETRIES=3^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0787208Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0787698Z ^[[36;1m# This function helps compare versions.^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0788431Z ^[[36;1m# Returns 0 if version1 >= version2, 1 otherwise.^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0789328Z ^[[36;1m# Usage: is_version_ge "3.0.0" "$version_num"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0790002Z ^[[36;1mis_version_ge() {^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0790662Z ^[[36;1m    [ "$(printf '%s\n' "$1" "$2" | sort -V | head -n1)" == "$1" ]^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0791503Z ^[[36;1m}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0791933Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0792527Z ^[[36;1m# Check for unsupported old versions (anything below v2.0.0)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0793356Z ^[[36;1mif [[ "${input_cosign_release}" != "main" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0794132Z ^[[36;1m  # Extract version without 'v' prefix for comparison^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0794871Z ^[[36;1m  version_num="${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0795535Z ^[[36;1m  version_num="${version_num#v}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0796110Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0796595Z ^[[36;1m  # Check if version is less than v2.0.0^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0797296Z ^[[36;1m  if ! is_version_ge "2.0.0" "$version_num"; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0798143Z ^[[36;1m    log_error "cosign versions below v2.0.0 are no longer supported."^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0799371Z ^[[36;1m    log_error "Requested version: ${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0800314Z ^[[36;1m    log_error "Please use cosign v2.6.0 or later."^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0801310Z ^[[36;1m    log_error "See https://github.com/sigstore/cosign/releases for available versions."^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0802240Z ^[[36;1m    exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0802761Z ^[[36;1m  fi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0803198Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0803895Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0804366Z ^[[36;1mmkdir -p "${install_dir}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0804933Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0805463Z ^[[36;1mif [[ "${input_cosign_release}" == "main" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0806344Z ^[[36;1m  log_info "installing cosign via 'go install' from its main version"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0807162Z ^[[36;1m  GOBIN=$(go env GOPATH)/bin^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0807877Z ^[[36;1m  go install github.com/sigstore/cosign/v3/cmd/cosign@main^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0808684Z ^[[36;1m  ln -s "$GOBIN/cosign" "${install_dir}/cosign"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0809466Z ^[[36;1m  exit 0^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0809933Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0810589Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0811017Z ^[[36;1mshaprog() {^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0811504Z ^[[36;1m  case ${runner_os} in^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0812050Z ^[[36;1m    Linux|linux)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0812595Z ^[[36;1m      sha256sum "$1" | cut -d' ' -f1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0813191Z ^[[36;1m      ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0813647Z ^[[36;1m    macOS|macos)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0814194Z ^[[36;1m      shasum -a256 "$1" | cut -d' ' -f1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0814823Z ^[[36;1m      ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0815292Z ^[[36;1m    Windows|windows)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0816283Z ^[[36;1m      powershell -command "(Get-FileHash $1 -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0817309Z ^[[36;1m      ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0817757Z ^[[36;1m    *)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0818291Z ^[[36;1m      log_error "unsupported OS ${runner_os}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0818934Z ^[[36;1m      exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0819549Z ^[[36;1m      ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0820013Z ^[[36;1m  esac^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0820459Z ^[[36;1m}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0820881Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0821725Z ^[[36;1m## curl -sL https://github.com/sigstore/cosign/releases/download/v3.0.6/cosign_checksums.txt |\^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0823142Z ^[[36;1m##   gawk 'match($2,/^cosign-([[:alnum:]]+)-([[:alnum:]]+)(\.[[:alnum:]]+)?$/,a){printf "bootstrap_%s_%s_sha=\"%s\"\n",a[1],a[2],$1}' |\^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0824329Z ^[[36;1m##   LANG=C sort^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0824871Z ^[[36;1mbootstrap_version='v3.0.6'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0825851Z ^[[36;1mbootstrap_darwin_amd64_sha="4c3e7af8372d3ca3296e62fa56f23fcbb5721cc6ac1827900d398f110d7cd280"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0827276Z ^[[36;1mbootstrap_darwin_arm64_sha="5fadd012ae6381a6a29ff86a7d39aa873878852f1073fc90b15995961ecfb084"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0828643Z ^[[36;1mbootstrap_linux_amd64_sha="c956e5dfcac53d52bcf058360d579472f0c1d2d9b69f55209e256fe7783f4c74"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0830151Z ^[[36;1mbootstrap_linux_arm64_sha="bedac92e8c3729864e13d4a17048007cfafa79d5deca993a43a90ffe018ef2b8"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0831539Z ^[[36;1mbootstrap_linux_arm_sha="67bd25d32daff5664caf51208c95defcb2ad7ac1296f394fa677bb8bacee62f5"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0832916Z ^[[36;1mbootstrap_linux_ppc64le_sha="08c3e5e0a09c440f49e9a69d8639d37fbec522ec8c5c0ac805243b098e6ea512"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0834301Z ^[[36;1mbootstrap_linux_riscv64_sha="e25952e798958b0f9168d044153ccc353f5469ca4b71a1707dffad0534d27017"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0835727Z ^[[36;1mbootstrap_linux_s390x_sha="3cf4b769258ed9cc3c2a93268c0d5c1cc3fbd094af8df21035cbac8fb0d7c088"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0837143Z ^[[36;1mbootstrap_windows_amd64_sha="9b85a88ebff2d9dd30ff4984a6f61f2cedc232dd87d81fa7f2ff3c0ed96c241c"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0838151Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0838630Z ^[[36;1mcosign_executable_name=cosign^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0839719Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0840426Z ^[[36;1mtrap "popd >/dev/null" EXIT^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0841037Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0841595Z ^[[36;1mpushd "${install_dir}" > /dev/null^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0842217Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0842662Z ^[[36;1mcase ${runner_os} in^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0843198Z ^[[36;1m  Linux|linux)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0843710Z ^[[36;1m    case ${runner_arch} in^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0844275Z ^[[36;1m      X64|amd64)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0844866Z ^[[36;1m        bootstrap_filename='cosign-linux-amd64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0845626Z ^[[36;1m        bootstrap_sha=${bootstrap_linux_amd64_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0846407Z ^[[36;1m        desired_cosign_filename='cosign-linux-amd64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0847087Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0847560Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0848006Z ^[[36;1m      ARM|arm)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0848582Z ^[[36;1m        bootstrap_filename='cosign-linux-arm'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0849492Z ^[[36;1m        bootstrap_sha=${bootstrap_linux_arm_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0850250Z ^[[36;1m        desired_cosign_filename='cosign-linux-arm'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0851119Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0851602Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0852048Z ^[[36;1m      ARM64|arm64)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0852654Z ^[[36;1m        bootstrap_filename='cosign-linux-arm64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0853428Z ^[[36;1m        bootstrap_sha=${bootstrap_linux_arm64_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0854200Z ^[[36;1m        desired_cosign_filename='cosign-linux-arm64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0854878Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0855359Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0855786Z ^[[36;1m      *)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0856383Z ^[[36;1m        log_error "unsupported architecture ${runner_arch}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0857099Z ^[[36;1m        exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0857634Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0858106Z ^[[36;1m    esac^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0858566Z ^[[36;1m    ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0859149Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0859602Z ^[[36;1m  macOS|macos)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0860123Z ^[[36;1m    case ${runner_arch} in^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0860700Z ^[[36;1m      X64|amd64)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0861297Z ^[[36;1m        bootstrap_filename='cosign-darwin-amd64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0862049Z ^[[36;1m        bootstrap_sha=${bootstrap_darwin_amd64_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0862825Z ^[[36;1m        desired_cosign_filename='cosign-darwin-amd64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0863511Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0863987Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0864430Z ^[[36;1m      ARM64|arm64)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0865194Z ^[[36;1m        bootstrap_filename='cosign-darwin-arm64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0865971Z ^[[36;1m        bootstrap_sha=${bootstrap_darwin_arm64_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0866756Z ^[[36;1m        desired_cosign_filename='cosign-darwin-arm64'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0867443Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0867918Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0868349Z ^[[36;1m      *)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0868955Z ^[[36;1m        log_error "unsupported architecture ${runner_arch}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0869805Z ^[[36;1m        exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0870322Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0870797Z ^[[36;1m    esac^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0871258Z ^[[36;1m    ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0871713Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0872159Z ^[[36;1m  Windows|windows)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0872704Z ^[[36;1m    case ${runner_arch} in^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0873277Z ^[[36;1m      X64|amd64)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0873909Z ^[[36;1m        bootstrap_filename='cosign-windows-amd64.exe'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0874717Z ^[[36;1m        bootstrap_sha=${bootstrap_windows_amd64_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0875534Z ^[[36;1m        desired_cosign_filename='cosign-windows-amd64.exe'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0876314Z ^[[36;1m        cosign_executable_name=cosign.exe^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0876959Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0877441Z ^[[36;1m      *)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0878041Z ^[[36;1m        log_error "unsupported architecture ${runner_arch}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0878753Z ^[[36;1m        exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0879443Z ^[[36;1m        ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0879928Z ^[[36;1m    esac^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0880387Z ^[[36;1m    ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0880838Z ^[[36;1m  *)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0881364Z ^[[36;1m    log_error "unsupported os ${runner_os}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0882007Z ^[[36;1m    exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0882474Z ^[[36;1m    ;;^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0882927Z ^[[36;1mesac^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0883375Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0883816Z ^[[36;1mSUDO=^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0884472Z ^[[36;1mif [[ "${input_use_sudo}" == "true" ]] && command -v sudo >/dev/null; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0885260Z ^[[36;1m  SUDO=sudo^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0885740Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0886184Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0886755Z ^[[36;1mexpected_bootstrap_version_digest=${bootstrap_sha}^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0888550Z ^[[36;1mlog_info "Downloading bootstrap version '${bootstrap_version}' of cosign to verify version to be installed...\n      https://github.com/sigstore/cosign/releases/download/${bootstrap_version}/${bootstrap_filename}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0891362Z ^[[36;1m$SUDO curl --retry "${CURL_RETRIES}" -fsSL "https://github.com/sigstore/cosign/releases/download/${bootstrap_version}/${bootstrap_filename}" -o "${cosign_executable_name}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0892909Z ^[[36;1mshaBootstrap=$(shaprog "${cosign_executable_name}")^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0893838Z ^[[36;1mif [[ "$shaBootstrap" != "${expected_bootstrap_version_digest}" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0894884Z ^[[36;1m  log_error "Unable to validate cosign version: '${input_cosign_release}'"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0895714Z ^[[36;1m  exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0896177Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0896703Z ^[[36;1m$SUDO chmod +x "${cosign_executable_name}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0897337Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0898020Z ^[[36;1m# If the bootstrap and specified `cosign` releases are the same, we're done.^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0899142Z ^[[36;1mif [[ "${input_cosign_release}" == "${bootstrap_version}" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0900368Z ^[[36;1m  log_info "bootstrap version successfully verified and matches requested version so nothing else to do"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0901405Z ^[[36;1m  exit 0^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0901865Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0902310Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0902886Z ^[[36;1msemver='^v([0-9]+\.){0,2}(\*|[0-9]+)(-?r?c?)(\.[0-9]+)$'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0903711Z ^[[36;1mif [[ "${input_cosign_release}" =~ $semver ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0904849Z ^[[36;1m  log_info "Custom cosign version '${input_cosign_release}' requested"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0905644Z ^[[36;1melse^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0906404Z ^[[36;1m  log_error "Unable to validate requested cosign version: '${input_cosign_release}'"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0907291Z ^[[36;1m  exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0907750Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0908186Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0908643Z ^[[36;1m# Download custom cosign^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0910511Z ^[[36;1mlog_info "Downloading platform-specific version '${input_cosign_release}' of cosign...\n      https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${desired_cosign_filename}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0913070Z ^[[36;1m$SUDO curl --retry "${CURL_RETRIES}" -fsSL "https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${desired_cosign_filename}" -o "cosign_${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0914768Z ^[[36;1mshaCustom=$(shaprog "cosign_${input_cosign_release}");^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0915505Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0916007Z ^[[36;1m# same hash means it is the same release^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0916724Z ^[[36;1mif [[ "$shaCustom" != "$shaBootstrap" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0918309Z ^[[36;1m  log_info "Downloading cosign public key '${input_cosign_release}' of cosign...\n    https://raw.githubusercontent.com/sigstore/cosign/${input_cosign_release}/release/release-cosign.pub"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0920643Z ^[[36;1m  RELEASE_COSIGN_PUB_KEY=https://raw.githubusercontent.com/sigstore/cosign/${input_cosign_release}/release/release-cosign.pub^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0922244Z ^[[36;1m  RELEASE_COSIGN_PUB_KEY_SHA='f4cea466e5e887a45da5031757fa1d32655d83420639dc1758749b744179f126'^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0923232Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0923829Z ^[[36;1m  log_info "Verifying public key matches expected value"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0924923Z ^[[36;1m  $SUDO curl --retry "${CURL_RETRIES}" -fsSL "$RELEASE_COSIGN_PUB_KEY" -o public.key^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0925908Z ^[[36;1m  sha_fetched_key=$(shaprog public.key)^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0926726Z ^[[36;1m  if [[ "$sha_fetched_key" != "$RELEASE_COSIGN_PUB_KEY_SHA" ]]; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0927713Z ^[[36;1m    log_error "Fetched public key does not match expected digest, exiting"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0928534Z ^[[36;1m    exit 1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0929582Z ^[[36;1m  fi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0930186Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0930728Z ^[[36;1m  if is_version_ge "3.0.1" "$version_num"; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0931830Z ^[[36;1m    # we're trying to get something greater than or equal to v3.0.1^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0932808Z ^[[36;1m    keyless_signature_file=${desired_cosign_filename}.sigstore.json^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0934857Z ^[[36;1m    log_info "Downloading keyless verification bundle for platform-specific '${input_cosign_release}' of cosign...\n      https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${keyless_signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0937503Z ^[[36;1m    $SUDO curl --retry "${CURL_RETRIES}" -fsSLO "https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${keyless_signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0938833Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0939959Z ^[[36;1m    log_info "Using bootstrap cosign to verify keyless signature of desired cosign version"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0942329Z ^[[36;1m    "./${cosign_executable_name}" verify-blob --certificate-identity=keyless@projectsigstore.iam.gserviceaccount.com --certificate-oidc-issuer=https://accounts.google.com --bundle "${keyless_signature_file}" "cosign_${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0944307Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0944841Z ^[[36;1m    if is_version_ge "3.0.3" "$version_num"; then^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0945683Z ^[[36;1m      # we're trying to get something greater than or equal to v3.0.3^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0946644Z ^[[36;1m      kms_signature_file=${desired_cosign_filename}-kms.sigstore.json^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0948776Z ^[[36;1m      log_info "Downloading KMS verification bundle for platform-specific '${input_cosign_release}' of cosign...\n      https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${kms_signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0951585Z ^[[36;1m      $SUDO curl --retry "${CURL_RETRIES}" -fsSLO "https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${kms_signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.0952900Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1023243Z ^[[36;1m      log_info "Using bootstrap cosign to verify signature of desired cosign version"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1024951Z ^[[36;1m      "./${cosign_executable_name}" verify-blob --key public.key --bundle "${kms_signature_file}" "cosign_${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1026091Z ^[[36;1m    fi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1026535Z ^[[36;1m  else^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1027087Z ^[[36;1m    signature_file=${desired_cosign_filename}.sig^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1028799Z ^[[36;1m    log_info "Downloading detached signature for platform-specific '${input_cosign_release}' of cosign...\n      https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1031441Z ^[[36;1m    $SUDO curl --retry "${CURL_RETRIES}" -fsSLO "https://github.com/sigstore/cosign/releases/download/${input_cosign_release}/${signature_file}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1032651Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1033374Z ^[[36;1m    log_info "Using bootstrap cosign to verify signature of desired cosign version"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1034754Z ^[[36;1m    "./${cosign_executable_name}" verify-blob --key public.key --signature "${signature_file}" "cosign_${input_cosign_release}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1035843Z ^[[36;1m  fi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1036280Z ^[[36;1m^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1036749Z ^[[36;1m  $SUDO rm "${cosign_executable_name}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1037609Z ^[[36;1m  $SUDO mv "cosign_${input_cosign_release}" "${cosign_executable_name}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1038472Z ^[[36;1m  $SUDO chmod +x "${cosign_executable_name}"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1039298Z ^[[36;1m  log_info "Installation complete!"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1039896Z ^[[36;1mfi^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1082977Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1083729Z env:
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1084190Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1084778Z   input_cosign_release: v3.0.6
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1085333Z   input_install_dir: $HOME/.cosign
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1085913Z   input_use_sudo: false
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1086408Z   runner_arch: X64
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1087094Z   runner_os: Linux
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1087549Z ##[endgroup]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.1240635Z ^[[1;32mINFO^[[0m: Downloading bootstrap version 'v3.0.6' of cosign to verify version to be installed...
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7858764Z       https://github.com/sigstore/cosign/releases/download/v3.0.6/cosign-linux-amd64
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7862000Z ^[[1;32mINFO^[[0m: bootstrap version successfully verified and matches requested version so nothing else to do
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7887954Z ##[end-action id=__sigstore_cosign-installer.__run;outcome=success;conclusion=success;duration_ms=715]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7898900Z ##[start-action display=Run envsubst <<<"${input_install_dir}" >> "$GITHUB_PATH";id=__sigstore_cosign-installer.__run_2]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7977767Z ##[group]Run envsubst <<<"${input_install_dir}" >> "$GITHUB_PATH"
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.7980036Z ^[[36;1menvsubst <<<"${input_install_dir}" >> "$GITHUB_PATH"^[[0m
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8022917Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8024575Z env:
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8025580Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8026916Z   input_install_dir: $HOME/.cosign
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8028159Z ##[endgroup]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8131783Z ##[end-action id=__sigstore_cosign-installer.__run_2;outcome=success;conclusion=success;duration_ms=22]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8142862Z ##[start-action display=Run $install_dir = $ExecutionContext.InvokeCommand.ExpandString("${env:input_install_dir}");id=__sigstore_cosign-installer.__run_3]
+verify	Run sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6	2026-09-03T20:35:44.8160104Z ##[end-action id=__sigstore_cosign-installer.__run_3;outcome=skipped;conclusion=skipped;duration_ms=0]
+verify	Resolve digest	﻿2026-09-03T20:35:44.8262948Z ##[group]Run DIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.2" --format '{{json .Manifest}}' | jq -r .digest)
+verify	Resolve digest	2026-09-03T20:35:44.8266397Z ^[[36;1mDIGEST=$(docker buildx imagetools inspect "$IMAGE:v1.0.2" --format '{{json .Manifest}}' | jq -r .digest)^[[0m
+verify	Resolve digest	2026-09-03T20:35:44.8268826Z ^[[36;1mecho "digest=$DIGEST" >> "$GITHUB_OUTPUT"^[[0m
+verify	Resolve digest	2026-09-03T20:35:44.8271321Z ^[[36;1mecho "resolved $IMAGE:v1.0.2 -> $DIGEST"^[[0m
+verify	Resolve digest	2026-09-03T20:35:44.8314771Z shell: /usr/bin/bash -e {0}
+verify	Resolve digest	2026-09-03T20:35:44.8315867Z env:
+verify	Resolve digest	2026-09-03T20:35:44.8316825Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Resolve digest	2026-09-03T20:35:44.8318037Z ##[endgroup]
+verify	Resolve digest	2026-09-03T20:35:45.4461299Z resolved ghcr.io/thezmc/orders-api:v1.0.2 -> sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1
+verify	WRONG anyone with a valid signature passes	﻿2026-09-03T20:35:45.4518985Z ##[group]Run cosign verify \
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4519680Z ^[[36;1mcosign verify \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4519981Z ^[[36;1m  --certificate-identity-regexp '.*' \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4520348Z ^[[36;1m  --certificate-oidc-issuer-regexp '.*' \^[[0m
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4520935Z ^[[36;1m  "$IMAGE@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1" | jq '.[0].optional'^[[0m
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4558774Z shell: /usr/bin/bash -e {0}
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4559215Z env:
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4559478Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:45.4559769Z ##[endgroup]
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3293469Z 
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3294736Z Verification for ghcr.io/thezmc/orders-api@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1 --
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3297152Z The following checks were performed on each of these signatures:
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3297925Z   - The cosign claims were validated
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3298593Z   - Existence of the claims in the transparency log was verified offline
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3300014Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	WRONG anyone with a valid signature passes	2026-09-03T20:35:46.3320175Z {}
+verify	RIGHT only the release workflow passes	﻿2026-09-03T20:35:46.3361959Z ##[group]Run cosign verify \
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3362328Z ^[[36;1mcosign verify \^[[0m
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3362799Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3363336Z ^[[36;1m  --certificate-identity-regexp \^[[0m
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3363864Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3364647Z ^[[36;1m  "$IMAGE@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1" | jq '.[0].optional'^[[0m
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3403110Z shell: /usr/bin/bash -e {0}
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3403407Z env:
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3403640Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:46.3403952Z ##[endgroup]
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2082282Z 
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2083215Z Verification for ghcr.io/thezmc/orders-api@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1 --
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2084408Z The following checks were performed on each of these signatures:
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2085021Z   - The cosign claims were validated
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2085566Z   - Existence of the claims in the transparency log was verified offline
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2086324Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	RIGHT only the release workflow passes	2026-09-03T20:35:47.2109631Z {}
+verify	Verify attestation and scan its SBOM	﻿2026-09-03T20:35:47.2148202Z ##[group]Run cosign verify-attestation \
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2148591Z ^[[36;1mcosign verify-attestation \^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2149366Z ^[[36;1m  --certificate-oidc-issuer https://token.actions.githubusercontent.com \^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2149956Z ^[[36;1m  --certificate-identity-regexp \^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2150493Z ^[[36;1m    '^https://github\.com/theZMC/smaller-stranger-safer/\.github/workflows/release\.yml@' \^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2151285Z ^[[36;1m  --type cyclonedx "$IMAGE@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1" \^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2152155Z ^[[36;1m  | jq -r '.payload' | base64 -d | jq '.predicate' > attested-sbom.json^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2152777Z ^[[36;1mjq -r '.bomFormat + " with " + (.components | length | tostring) + " components"' attested-sbom.json^[[0m
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2190276Z shell: /usr/bin/bash -e {0}
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2190560Z env:
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2190774Z   IMAGE: ghcr.io/thezmc/orders-api
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.2191056Z ##[endgroup]
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9796466Z 
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9797703Z Verification for ghcr.io/thezmc/orders-api@sha256:f32aa1a241f3f90b877ac1d46ca9f8a6f950ae30fc8dbd5a6e1178cde90b9db1 --
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9799494Z The following checks were performed on each of these signatures:
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9800302Z   - The cosign claims were validated
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9801065Z   - Existence of the claims in the transparency log was verified offline
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:47.9802240Z   - The code-signing certificate was verified using trusted certificate authority certificates
+verify	Verify attestation and scan its SBOM	2026-09-03T20:35:48.0288552Z CycloneDX with 1451 components
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	﻿2026-09-03T20:35:48.0372966Z Post job cleanup.
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2449775Z ##[group]Logout from ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2504095Z [command]/usr/bin/docker logout ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2659613Z Removing login credentials for ghcr.io
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2700418Z ##[endgroup]
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2701639Z ##[group]Post cache
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2702447Z State not set
+verify	Post Run docker/login-action@dbcb813823bdd20940b903addbd779551569679f	2026-09-03T20:35:48.2703124Z ##[endgroup]
+verify	Complete job	﻿2026-09-03T20:35:48.2821425Z Cleaning up orphan processes
