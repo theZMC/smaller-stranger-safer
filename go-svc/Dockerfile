@@ -5,7 +5,7 @@ COPY cmd/ ./cmd/
 RUN CGO_ENABLED=0 go build -o /svc ./cmd/svc
 
 FROM debian:12-slim@sha256:abd67ffcfa541b485a3dff59865ab629aa048a6c613e639d36e7456b0b229241 AS certs
-RUN apt-get update && apt-get install -y ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates=20230311+deb12u1 --no-install-recommends
 
 FROM scratch
 COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
