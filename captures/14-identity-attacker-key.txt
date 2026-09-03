@@ -1,0 +1,12 @@
+# The same image, verified twice, with two different public keys.
+# Both pass. "Is it signed" is not the question.
+
+$ cosign verify --key cosign.pub localhost:5001/orders-api@sha256:f96e236d…
+
+Verification for localhost:5001/orders-api@sha256:f96e236d… --
+  - The signatures were verified against the specified public key
+
+$ cosign verify --key attacker.pub localhost:5001/orders-api@sha256:f96e236d…
+
+Verification for localhost:5001/orders-api@sha256:f96e236d… --
+  - The signatures were verified against the specified public key

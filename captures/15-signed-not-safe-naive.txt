@@ -1,0 +1,15 @@
+# The naive image: signed, attested, verifiable, and full of CVEs.
+
+$ cosign verify --key cosign.pub localhost:5001/orders-api-naive@sha256:4e49f420…
+
+Verification for localhost:5001/orders-api-naive@sha256:4e49f420… --
+  - The signatures were verified against the specified public key
+
+$ cosign verify-attestation --key cosign.pub --type cyclonedx \
+    localhost:5001/orders-api-naive@sha256:4e49f420… \
+    | jq -r '.payload' | base64 -d | jq '.predicate' > attested-naive.json
+
+$ grype sbom:./attested-naive.json
+ ✔ Scanned for vulnerabilities     [2,011 vulnerability matches]
+   ├── by severity: 209 critical, 750 high, 605 medium, 151 low
+   └── by status:   385 fixed, 2,510 not-fixed

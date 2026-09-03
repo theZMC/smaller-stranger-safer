@@ -1,0 +1,24 @@
+# ci run 33799677396, 2026-09-03, commit "docs: update dependency install language
+# in readme". Docs only. The same Dockerfile passed this gate on 2026-08-24.
+# The digest pin froze the base at openssl 3.5.6; 3.5.7 shipped the fixes since.
+
+$ grype orders-api:ci --only-fixed --fail-on high
+ INFO using distro: debian 13
+ INFO gathered packages packages=104
+ INFO ignoring 19 matches due to user-provided ignore rules
+ERROR discovered vulnerabilities at or above the severity threshold
+
+NAME        INSTALLED        FIXED IN         TYPE  VULNERABILITY   SEVERITY
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-63073  Critical
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-75803  Critical
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-18798  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-63076  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-14457  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-14456  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-63072  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-54874  High
+libssl3t64  3.5.6-1~deb13u2  3.5.7-1~deb13u2  deb   CVE-2026-63075  High
+qs          6.15.3           6.16.0           npm   GHSA-x5fp-wj9c-mxmx  Medium
+qs          6.15.3           6.16.0           npm   GHSA-4mjr-xmp4-gh2g  Medium
+
+Error: Failed minimum severity level. Found vulnerabilities with level 'high' or higher

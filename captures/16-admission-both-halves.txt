@@ -1,0 +1,29 @@
+# Kyverno 1.19 ImageValidatingPolicy in the kind cluster from scripts/cluster.sh.
+# ghcr.io/thezmc/cryptominer is busybox retagged and pushed unsigned.
+
+$ kubectl delete ivpol require-signed-images
+imagevalidatingpolicy.policies.kyverno.io "require-signed-images" deleted
+
+$ kubectl apply -f k8s/unsigned-pod.yaml
+pod/oops created
+
+$ kubectl apply -f policy/require-signed-images.yaml
+imagevalidatingpolicy.policies.kyverno.io/require-signed-images created
+
+$ kubectl apply -f k8s/unsigned-pod.yaml
+Error from server: error when creating "k8s/unsigned-pod.yaml": admission webhook
+  "ivpol.validate.kyverno.svc-fail" denied the request: Policy
+  require-signed-images failed: image is not signed by the release workflow
+
+$ kubectl apply -f k8s/signed-pod.yaml
+pod/ok created
+
+$ kubectl get pod ok
+NAME   READY   STATUS    RESTARTS   AGE
+ok     1/1     Running   0          9s
+
+# The slide uses the shorter `kubectl run oops --image=ghcr.io/thezmc/cryptominer`
+# form, which drops the `error when creating` prefix:
+# Error from server: admission webhook "ivpol.validate.kyverno.svc-fail" denied
+#   the request: Policy require-signed-images failed: image is not signed by the
+#   release workflow

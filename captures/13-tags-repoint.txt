@@ -1,0 +1,18 @@
+$ cosign verify --key cosign.pub localhost:5001/orders-api:v1.0.1
+
+Verification for localhost:5001/orders-api:v1.0.1 --
+  - The signatures were verified against the specified public key
+{"identity":{"docker-reference":"localhost:5001/orders-api:v1.0.1"},
+ "image":{"docker-manifest-digest":"sha256:f96e236d…"}}
+
+$ docker tag ghcr.io/thezmc/cryptominer localhost:5001/orders-api:v1.0.1
+$ docker push localhost:5001/orders-api:v1.0.1
+v1.0.1: digest: sha256:8f2ffdcb…
+
+$ cosign verify --key cosign.pub localhost:5001/orders-api:v1.0.1
+Error: no signatures found
+
+$ cosign verify --key cosign.pub localhost:5001/orders-api@sha256:f96e236d…
+
+Verification for localhost:5001/orders-api@sha256:f96e236d… --
+  - The signatures were verified against the specified public key
